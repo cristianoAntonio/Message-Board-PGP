@@ -1,6 +1,6 @@
 <?php
     include_once "db.php";
-    ini_set('display_errors', 1);
+    //ini_set('display_errors', 1);
     //ini_set('display_startup_errors', 1);
     //error_reporting(E_ALL);
     session_start();
@@ -26,4 +26,4 @@
     $q = "UPDATE public.thread SET post=$post WHERE id = $thread";
     $result = pg_query($conn, $q);
 
-    //header("Location: ../test2.php"); 
+    header("Location: ../test2.php"); 
