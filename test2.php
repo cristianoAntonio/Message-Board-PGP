@@ -22,35 +22,46 @@
     <title>Document</title>
 </head>
 <body>
-    <form action="includes/thread.php" enctype="multipart/form-data" method="post">
-        <label for="name">Title</label>
-        <input type="text" name="name" id="name">
-        <label for="context">Context</label>
-        <input type="text" name="context" id="context">
-        <select name="flag">
-            <?php while ($row = pg_fetch_row($result)) : ?>
-                <option value="<?=$row[0]?>">
-                    <?=$row[2]?>             
-                </option>
-            <?php endwhile;?>
-        </select>
-        <input type="hidden" name="MAX_FILE_SIZE" value="50000000" />
-        <input type="hidden" name="thread" value="<?=$_GET['thread']?>">
-        <input type="hidden" name="board" value="<?=$_GET['board']?>">
-        <input type="file" id="media" name="media"/>
-        <input type="submit" value="submit">
-    </form>
+    <div class="container mt-5">
+        <form action="includes/thread.php" enctype="multipart/form-data" method="post">
+            <div class="mb-3">
+                <label for="name" class="form-label">Title</label>
+                <input type="text" name="name" id="name" class="form-control">
+            </div>
+            <div class="mb-3">
+                <label for="context" class="form-label">Context</label>
+                <input type="text" name="context" id="context" class="form-control">
+            </div>
+            <div class="mb-3">
+                <label for="flag" class="form-label">Flag</label>
+                <select name="flag" id="flag" class="form-select">
+                    <?php while ($row = pg_fetch_row($result)) : ?>
+                        <option value="<?=$row[0]?>"><?=$row[2]?></option>
+                    <?php endwhile; ?>
+                </select>
+            </div>
+            <input type="hidden" name="MAX_FILE_SIZE" value="50000000">
+            <input type="hidden" name="thread" value="<?=$_GET['thread']?>">
+            <input type="hidden" name="board" value="<?=$_GET['board']?>">
+            <div class="mb-3">
+                <label for="media" class="form-label">Media</label>
+                <input type="file" id="media" name="media" class="form-control">
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
 
-    <form action="test2.php" method="get">
-        <select name="board">
-            <?php while ($row = pg_fetch_row($result2)) : ?>
-                <option value="<?=$row[0]?>">
-                    <?=$row[1]?>             
-                </option>
-            <?php endwhile;?>
-        </select>
-        <input type="submit" value="set board">
-    </form>
+        <form action="test2.php" method="get">
+            <div class="mb-3">
+                <label for="board" class="form-label">Board</label>
+                <select name="board" id="board" class="form-select">
+                    <?php while ($row = pg_fetch_row($result2)) : ?>
+                        <option value="<?=$row[0]?>"><?=$row[1]?></option>
+                    <?php endwhile; ?>
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary">Set Board</button>
+        </form>
+    </div>
 
 </body>
 </html>
