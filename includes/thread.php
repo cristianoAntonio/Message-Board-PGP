@@ -8,7 +8,8 @@
     $board = pg_escape_string($conn,$_POST['board']);
     $name = pg_escape_string($conn,$_POST['name']);  
     
-    if(empty($name)){
+    if(empty($name) || empty($board)){
+        header("Location: ../test2.php?noboardorname"); 
         die();
     }
 
@@ -25,5 +26,8 @@
 
     $q = "UPDATE public.thread SET post=$post WHERE id = $thread";
     $result = pg_query($conn, $q);
+
+    var_dump($thread);
+    var_dump($post);
 
     header("Location: ../test2.php"); 
